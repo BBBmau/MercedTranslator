@@ -1,7 +1,11 @@
+import 'package:cse155/cameraView.dart';
 import 'package:flutter/material.dart';
+import 'package:camera/camera.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(const cameraView());
 }
 
 class MyApp extends StatelessWidget {
