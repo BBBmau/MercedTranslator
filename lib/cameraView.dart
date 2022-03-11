@@ -36,8 +36,40 @@ class _cameraViewState extends State<cameraView> {
     if (!controller.value.isInitialized) {
       return Container();
     }
-    return MaterialApp(
-      home: CameraPreview(controller),
-    );
+    return Scaffold(
+        body: Stack(
+            fit: StackFit.expand,
+            alignment: Alignment.center,
+            children: [
+          Expanded(child: CameraPreview(controller)),
+          Expanded(child: controlRow())
+        ]));
   }
+}
+
+Widget controlRow() {
+  return Padding(
+      padding: const EdgeInsets.only(left: 40, bottom: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: const <Widget>[
+          IconButton(
+            onPressed: null,
+            icon: Icon(
+              Icons.flash_auto,
+              color: Colors.white,
+            ),
+            iconSize: 32,
+          ),
+          IconButton(
+              onPressed: null,
+              icon: Icon(
+                Icons.circle,
+                color: Colors.white,
+              ),
+              iconSize: 90),
+          SizedBox(width: 88)
+        ],
+      ));
 }
