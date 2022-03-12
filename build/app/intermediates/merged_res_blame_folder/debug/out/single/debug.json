@@ -20,10 +20,6 @@
         "source": "/home/mau/Documents/CSE155/MercedTranslator/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
     },
     {
-        "merged": "/home/mau/Documents/CSE155/MercedTranslator/build/app/intermediates/res/merged/debug/drawable_launch_background.xml.flat",
-        "source": "/home/mau/Documents/CSE155/MercedTranslator/android/app/src/main/res/drawable/launch_background.xml"
-    },
-    {
         "merged": "/home/mau/Documents/CSE155/MercedTranslator/build/app/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
         "source": "/home/mau/Documents/CSE155/MercedTranslator/android/app/src/main/res/mipmap-hdpi/ic_launcher.png"
     }

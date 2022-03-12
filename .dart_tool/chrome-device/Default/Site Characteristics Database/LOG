@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-2022/03/09-18:25:14.591 3ea50 Reusing MANIFEST /tmp/flutter_tools.FFPINZ/flutter_tools_chrome_device.FHIQMV/Default/Site Characteristics Database/MANIFEST-000001
-2022/03/09-18:25:14.591 3ea50 Recovering log #3
-2022/03/09-18:25:14.591 3ea50 Reusing old log /tmp/flutter_tools.FFPINZ/flutter_tools_chrome_device.FHIQMV/Default/Site Characteristics Database/000003.log 
-=======
-2022/03/09-16:28:52.022 273c Reusing MANIFEST C:\Users\Kevin\AppData\Local\Temp\flutter_tools.79faa927\flutter_tools_chrome_device.e1906358\Default\Site Characteristics Database/MANIFEST-000001
->>>>>>> 655f5d839070c6683b95ee75a6f9a2616bc98f67
+2022/03/09-19:55:49.627 3f9f5 Reusing MANIFEST /tmp/flutter_tools.WRUGOZ/flutter_tools_chrome_device.RCGGBC/Default/Site Characteristics Database/MANIFEST-000001
+2022/03/09-19:55:49.627 3f9f5 Recovering log #3
+2022/03/09-19:55:49.627 3f9f5 Level-0 table #6: started
+2022/03/09-19:55:49.629 3f9f5 Level-0 table #6: 191 bytes OK
+2022/03/09-19:55:49.629 3f9f5 Recovering log #6
+2022/03/09-19:55:49.629 3f9f5 Reusing old log /tmp/flutter_tools.WRUGOZ/flutter_tools_chrome_device.RCGGBC/Default/Site Characteristics Database/000006.log 
+2022/03/09-19:55:49.634 3f9f5 Delete type=0 #3
