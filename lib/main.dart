@@ -5,7 +5,7 @@ import 'package:camera/camera.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
-  runApp(const cameraView());
+  runApp(const MaterialApp(home: cameraView()));
 }
 
 class MyApp extends StatelessWidget {

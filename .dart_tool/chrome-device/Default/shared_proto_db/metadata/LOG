@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-2022/03/09-18:25:14.872 3ea7a Reusing MANIFEST /tmp/flutter_tools.FFPINZ/flutter_tools_chrome_device.FHIQMV/Default/shared_proto_db/metadata/MANIFEST-000001
-2022/03/09-18:25:14.872 3ea7a Recovering log #3
-2022/03/09-18:25:14.872 3ea7a Reusing old log /tmp/flutter_tools.FFPINZ/flutter_tools_chrome_device.FHIQMV/Default/shared_proto_db/metadata/000003.log 
-=======
->>>>>>> 655f5d839070c6683b95ee75a6f9a2616bc98f67
+2022/03/09-19:55:49.867 3f9e7 Reusing MANIFEST /tmp/flutter_tools.WRUGOZ/flutter_tools_chrome_device.RCGGBC/Default/shared_proto_db/metadata/MANIFEST-000001
+2022/03/09-19:55:49.867 3f9e7 Recovering log #3
+2022/03/09-19:55:49.867 3f9e7 Reusing old log /tmp/flutter_tools.WRUGOZ/flutter_tools_chrome_device.RCGGBC/Default/shared_proto_db/metadata/000003.log 
