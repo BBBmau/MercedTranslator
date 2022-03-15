@@ -23,16 +23,17 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: SplashScreen(
-        seconds: 8,
+        seconds: 2,
         navigateAfterSeconds: cameraView(),
-        title: new Text(
+        title: Text(
           'BLEACH',
-          style: new TextStyle(
+          style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.0,
               color: Colors.white),
         ),
         backgroundColor: Colors.lightBlue[200],
+        loaderColor: Colors.lightBlue[200],
       )
     );
   }

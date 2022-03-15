@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 
@@ -50,7 +52,7 @@ class _cameraViewState extends State<cameraView> {
             IconButton(
                 onPressed: takePicPressed,
                 icon: const Icon(
-                  Icons.circle,
+                  Icons.lens_outlined,
                   color: Colors.white,
                 ),
                 iconSize: 90),
@@ -67,6 +69,12 @@ class _cameraViewState extends State<cameraView> {
         });
         if (file != null) {
           print("PICTURE TAKEN IN ${file.path}");
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ImageView(
+              imagePath : file.path.toString()
+            )),
+            );
         }
       }
     });
@@ -90,6 +98,7 @@ class _cameraViewState extends State<cameraView> {
 //   final CameraController? cameraController = controller;
 // }
 
+
   @override
   Widget build(BuildContext context) {
     if (!controller.value.isInitialized) {
@@ -103,5 +112,20 @@ class _cameraViewState extends State<cameraView> {
           Expanded(child: CameraPreview(controller)),
           Expanded(child: controlRow())
         ]));
+  }
+}
+
+class ImageView extends StatelessWidget {
+  final String imagePath;
+  const ImageView({Key? key, required this.imagePath})
+   : super(key : key);
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Display Picture')),
+      body: Image.file(File(imagePath)),
+      );
   }
 }
