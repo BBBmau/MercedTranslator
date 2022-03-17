@@ -37,30 +37,34 @@ class _cameraViewState extends State<cameraView> {
   }
 
   Widget controlRow() {
-    return Padding(
-        padding: const EdgeInsets.only(left: 40, bottom: 30),
+    return Ink(
+      color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 0, bottom: 54),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            const IconButton(
-              onPressed: null,
-              icon: Icon(
-                Icons.flash_auto,
-                color: Colors.white,
-              ),
-              iconSize: 32,
-            ),
-            IconButton(
-                onPressed: takePicPressed,
-                icon: const Icon(
-                  Icons.lens_outlined,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              const IconButton(
+                onPressed: null,
+                icon: Icon(
+                  Icons.flash_auto,
                   color: Colors.white,
                 ),
-                iconSize: 90),
-            const SizedBox(width: 88)
-          ],
-        ));
+                iconSize: 32,
+              ),
+              IconButton(
+                  onPressed: takePicPressed,
+                  icon: const Icon(
+                    Icons.lens_outlined,
+                    color: Colors.white,
+                  ),
+                  iconSize: 90),
+              const SizedBox(width: 88)
+            ],
+          )
+        )
+      );
   }
 
   void takePicPressed() {
@@ -107,13 +111,31 @@ class _cameraViewState extends State<cameraView> {
       return Container();
     }
     return Scaffold(
-        body: Stack(
-            fit: StackFit.expand,
-            alignment: Alignment.center,
-            children: [
-          Expanded(child: CameraPreview(controller)),
-          Expanded(child: controlRow())
-        ]));
+      body: Column(
+        children: [
+          AspectRatio(
+            aspectRatio: 1/controller!.value.aspectRatio,
+            child: Stack(
+              fit: StackFit.expand,
+              alignment: Alignment.center,
+              children: [
+                Expanded(child: CameraPreview(controller)),
+              ]   
+            )
+          ),
+          controlRow(),
+        ],
+      ),
+
+      
+    );             
+        // body: Stack(
+        //     fit: StackFit.expand,
+        //     alignment: Alignment.center,
+        //     children: [
+        //   Expanded(child: CameraPreview(controller)),
+        //   Expanded(child: controlRow())
+        // ]));
   }
 }
 
