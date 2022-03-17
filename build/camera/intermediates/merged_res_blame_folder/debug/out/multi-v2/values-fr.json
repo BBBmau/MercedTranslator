@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/camera/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
+            "outputFile": "/home/mau/Documents/CSE155/MercedTranslator/build/camera/intermediates/incremental/mergeDebugResources/merged.dir/values-fr/values-fr.xml",
             "map": [
                 {
-                    "source": "/Users/misa/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-fr/values-fr.xml",
+                    "source": "/home/mau/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-fr/values-fr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/camera/intermediates/res/merged/debug/values-fr/values-fr.xml",
+            "outputFile": "/home/mau/Documents/CSE155/MercedTranslator/build/camera/intermediates/res/merged/debug/values-fr/values-fr.xml",
             "map": [
                 {
-                    "source": "/Users/misa/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-fr/values-fr.xml",
+                    "source": "/home/mau/.gradle/caches/transforms-2/files-2.1/122df2e57d294d1a53db26bbc3b813c1/core-1.6.0/res/values-fr/values-fr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
