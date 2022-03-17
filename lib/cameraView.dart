@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:camera/camera.dart';
 
 List<CameraDescription> cameras = [];
@@ -18,6 +19,7 @@ class _cameraViewState extends State<cameraView> {
 
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     super.initState();
     controller = CameraController(cameras[0], ResolutionPreset.max);
     controller.initialize().then((_) {
