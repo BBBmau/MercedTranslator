@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/mau/Documents/CSE155/MercedTranslator/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
+            "outputFile": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/home/mau/Documents/CSE155/MercedTranslator/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/res/values-night/styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

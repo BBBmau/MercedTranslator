@@ -1,22 +1,27 @@
 import 'dart:io';
-import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
 
 List<CameraDescription> cameras = [];
 
-class cameraView extends StatefulWidget {
-  const cameraView({Key? key}) : super(key: key);
+class CameraView extends StatefulWidget {
+  const CameraView({Key? key}) : super(key: key);
 
   @override
-  State<cameraView> createState() => _cameraViewState();
+  State<CameraView> createState() => _CameraViewState();
 }
 
-class _cameraViewState extends State<cameraView> {
+class _CameraViewState extends State<CameraView> {
   late CameraController controller;
   XFile? imageFile;
 
+
+  getPermission() async {
+    await Permission.camera.request();
+    PermissionStatus status = await Permission.camera.status;
+  }
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays([]);
@@ -40,30 +45,27 @@ class _cameraViewState extends State<cameraView> {
   Widget controlRow() {
     return Ink(
       color: Colors.black,
-      child: Padding(
-        padding: const EdgeInsets.only(left: 0, bottom: 54),
-        child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              const IconButton(
-                onPressed: null,
-                icon: Icon(
-                  Icons.flash_auto,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: <Widget>[
+            const IconButton(
+              onPressed: null,
+              icon: Icon(
+                Icons.flash_auto,
+                color: Colors.white,
+              ),
+              iconSize: 32,
+            ),
+            IconButton(
+                onPressed: takePicPressed,
+                icon: const Icon(
+                  Icons.lens_outlined,
                   color: Colors.white,
                 ),
-                iconSize: 32,
-              ),
-              IconButton(
-                  onPressed: takePicPressed,
-                  icon: const Icon(
-                    Icons.lens_outlined,
-                    color: Colors.white,
-                  ),
-                  iconSize: 90),
-              const SizedBox(width: 88)
-            ],
-          )
+                iconSize: 90),
+            const SizedBox(width: 50, height: 25)
+          ],
         )
       );
   }
