@@ -17,6 +17,7 @@ INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/and
 INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml:1:1-34:12
 INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml:1:1-34:12
 MERGED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml:1:1-34:12
+MERGED from [:permission_handler_android] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/permission_handler_android/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:camera] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-12:12
 MERGED from [:flutter_plugin_android_lifecycle] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.window:window-java:1.0.0-beta04] /Users/misa/.gradle/caches/transforms-2/files-2.1/ad201fac15a88598107ec645f351f5b4/jetified-window-java-1.0.0-beta04/AndroidManifest.xml:17:1-23:12
@@ -57,6 +58,8 @@ uses-sdk
 INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/AndroidManifest.xml
+MERGED from [:permission_handler_android] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/permission_handler_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:permission_handler_android] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/permission_handler_android/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:camera] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:camera] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/camera/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] /Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/flutter_plugin_android_lifecycle/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44

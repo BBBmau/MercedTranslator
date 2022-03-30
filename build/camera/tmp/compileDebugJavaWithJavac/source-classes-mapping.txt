@@ -1,7 +1,5 @@
 io/flutter/plugins/camera/features/zoomlevel/ZoomUtils.java
  io.flutter.plugins.camera.features.zoomlevel.ZoomUtils
-io/flutter/plugins/camera/features/fpsrange/FpsRangeFeature.java
- io.flutter.plugins.camera.features.fpsrange.FpsRangeFeature
 io/flutter/plugins/camera/DartMessenger.java
  io.flutter.plugins.camera.DartMessenger
  io.flutter.plugins.camera.DartMessenger$1
@@ -11,13 +9,15 @@ io/flutter/plugins/camera/DartMessenger.java
  io.flutter.plugins.camera.DartMessenger$5
  io.flutter.plugins.camera.DartMessenger$CameraEventType
  io.flutter.plugins.camera.DartMessenger$DeviceEventType
+io/flutter/plugins/camera/features/fpsrange/FpsRangeFeature.java
+ io.flutter.plugins.camera.features.fpsrange.FpsRangeFeature
+io/flutter/plugins/camera/features/focuspoint/FocusPointFeature.java
+ io.flutter.plugins.camera.features.focuspoint.FocusPointFeature
 io/flutter/plugins/camera/CameraPermissions.java
  io.flutter.plugins.camera.CameraPermissions
  io.flutter.plugins.camera.CameraPermissions$CameraRequestPermissionsListener
  io.flutter.plugins.camera.CameraPermissions$PermissionsRegistry
  io.flutter.plugins.camera.CameraPermissions$ResultCallback
-io/flutter/plugins/camera/features/focuspoint/FocusPointFeature.java
- io.flutter.plugins.camera.features.focuspoint.FocusPointFeature
 io/flutter/plugins/camera/CameraRegionUtils.java
  io.flutter.plugins.camera.CameraRegionUtils
  io.flutter.plugins.camera.CameraRegionUtils$1
@@ -25,11 +25,11 @@ io/flutter/plugins/camera/CameraRegionUtils.java
  io.flutter.plugins.camera.CameraRegionUtils$SizeFactory
 io/flutter/plugins/camera/features/flash/FlashMode.java
  io.flutter.plugins.camera.features.flash.FlashMode
+io/flutter/plugins/camera/CameraPlugin.java
+ io.flutter.plugins.camera.CameraPlugin
 io/flutter/plugins/camera/media/MediaRecorderBuilder.java
  io.flutter.plugins.camera.media.MediaRecorderBuilder
  io.flutter.plugins.camera.media.MediaRecorderBuilder$MediaRecorderFactory
-io/flutter/plugins/camera/CameraPlugin.java
- io.flutter.plugins.camera.CameraPlugin
 io/flutter/plugins/camera/features/zoomlevel/ZoomLevelFeature.java
  io.flutter.plugins.camera.features.zoomlevel.ZoomLevelFeature
 io/flutter/plugins/camera/features/noisereduction/NoiseReductionFeature.java
@@ -53,11 +53,11 @@ io/flutter/plugins/camera/CameraCaptureCallback.java
  io.flutter.plugins.camera.CameraCaptureCallback
  io.flutter.plugins.camera.CameraCaptureCallback$1
  io.flutter.plugins.camera.CameraCaptureCallback$CameraCaptureStateListener
+io/flutter/plugins/camera/types/ResolutionPreset.java
+ io.flutter.plugins.camera.types.ResolutionPreset
 io/flutter/plugins/camera/CameraProperties.java
  io.flutter.plugins.camera.CameraProperties
  io.flutter.plugins.camera.CameraPropertiesImpl
-io/flutter/plugins/camera/types/ResolutionPreset.java
- io.flutter.plugins.camera.types.ResolutionPreset
 io/flutter/plugins/camera/Camera.java
  io.flutter.plugins.camera.Camera
  io.flutter.plugins.camera.Camera$1
@@ -73,10 +73,10 @@ io/flutter/plugins/camera/Camera.java
  io.flutter.plugins.camera.ErrorCallback
 io/flutter/plugins/camera/features/CameraFeature.java
  io.flutter.plugins.camera.features.CameraFeature
-io/flutter/plugins/camera/types/ExposureMode.java
- io.flutter.plugins.camera.types.ExposureMode
 io/flutter/plugins/camera/types/CaptureTimeoutsWrapper.java
  io.flutter.plugins.camera.types.CaptureTimeoutsWrapper
+io/flutter/plugins/camera/types/ExposureMode.java
+ io.flutter.plugins.camera.types.ExposureMode
 io/flutter/plugins/camera/features/resolution/ResolutionPreset.java
  io.flutter.plugins.camera.features.resolution.ResolutionPreset
 io/flutter/plugins/camera/types/Timeout.java
@@ -94,10 +94,10 @@ io/flutter/plugins/camera/features/CameraFeatures.java
 io/flutter/plugins/camera/features/resolution/ResolutionFeature.java
  io.flutter.plugins.camera.features.resolution.ResolutionFeature
  io.flutter.plugins.camera.features.resolution.ResolutionFeature$1
-io/flutter/plugins/camera/features/CameraFeatureFactory.java
- io.flutter.plugins.camera.features.CameraFeatureFactory
 io/flutter/plugins/camera/types/FlashMode.java
  io.flutter.plugins.camera.types.FlashMode
+io/flutter/plugins/camera/features/CameraFeatureFactory.java
+ io.flutter.plugins.camera.features.CameraFeatureFactory
 io/flutter/plugins/camera/BuildConfig.java
  io.flutter.plugins.camera.BuildConfig
 io/flutter/plugins/camera/types/FocusMode.java

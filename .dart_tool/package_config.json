@@ -140,6 +140,36 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "permission_handler",
+      "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler-9.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_android",
+      "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_android-9.0.2+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_apple",
+      "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_apple-9.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
+      "name": "permission_handler_platform_interface",
+      "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_platform_interface-3.7.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "permission_handler_windows",
+      "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/permission_handler_windows-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "plugin_platform_interface",
       "rootUri": "file:///Users/misa/CSE_155_project/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2",
       "packageUri": "lib/",
@@ -224,7 +254,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-03-14T20:59:56.906347Z",
+  "generated": "2022-03-20T01:38:19.948682Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
