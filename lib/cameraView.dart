@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -51,7 +52,7 @@ class _CameraViewState extends State<CameraView> {
           children: <Widget>[
             const IconButton(
               onPressed: null,
-              icon: Icon(
+              icon: Icon( 
                 Icons.flash_auto,
                 color: Colors.white,
               ),
@@ -98,28 +99,15 @@ class _CameraViewState extends State<CameraView> {
       body: Column(
         children: [
           AspectRatio(
-            aspectRatio: 1/controller!.value.aspectRatio,
-            child: Stack(
-              fit: StackFit.expand,
-              alignment: Alignment.center,
-              children: [
-                Expanded(child: CameraPreview(controller)),
-              ]   
-            )
+            aspectRatio: 1/controller.value.aspectRatio,
+            child: CameraPreview(controller)
           ),
-          controlRow(),
+          Expanded(
+            child: controlRow()
+          ),
         ],
       ),
-
-      
-    );             
-        // body: Stack(
-        //     fit: StackFit.expand,
-        //     alignment: Alignment.center,
-        //     children: [
-        //   Expanded(child: CameraPreview(controller)),
-        //   Expanded(child: controlRow())
-        // ]));
+    );
   }
 }
 
