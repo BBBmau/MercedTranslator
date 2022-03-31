@@ -4,22 +4,36 @@
             "outputFile": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/res/values-night/styles.xml",
+                    "source": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/res/values-night/colors.xml",
                     "from": {
-                        "startLines": "3,14",
-                        "startColumns": "4,4",
-                        "startOffsets": "172,806",
-                        "endLines": "7,16",
-                        "endColumns": "12,12",
-                        "endOffsets": "464,970"
+                        "startLines": "2",
+                        "startColumns": "0",
+                        "startOffsets": "51",
+                        "endColumns": "53",
+                        "endOffsets": "104"
                     },
                     "to": {
-                        "startLines": "2,7",
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "57",
+                        "endOffsets": "108"
+                    }
+                },
+                {
+                    "source": "/Users/misa/CSE_155_project/VirtualTranslator/MercedTranslator/android/app/src/main/res/values-night/styles.xml",
+                    "from": {
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
+                    },
+                    "to": {
+                        "startLines": "3,7",
                         "startColumns": "4,4",
-                        "startOffsets": "55,352",
+                        "startOffsets": "113,294",
                         "endLines": "6,9",
                         "endColumns": "12,12",
-                        "endOffsets": "347,516"
+                        "endOffsets": "289,458"
                     }
                 }
             ]
