@@ -18,11 +18,11 @@ class _CameraViewState extends State<CameraView> {
   late CameraController controller;
   XFile? imageFile;
 
-
   getPermission() async {
     await Permission.camera.request();
     PermissionStatus status = await Permission.camera.status;
   }
+
   @override
   void initState() {
     SystemChrome.setEnabledSystemUIOverlays([]);
@@ -45,14 +45,14 @@ class _CameraViewState extends State<CameraView> {
 
   Widget controlRow() {
     return Ink(
-      color: Colors.black,
-      child: Row(
+        color: Colors.black,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             const IconButton(
               onPressed: null,
-              icon: Icon( 
+              icon: Icon(
                 Icons.flash_auto,
                 color: Colors.white,
               ),
@@ -67,8 +67,7 @@ class _CameraViewState extends State<CameraView> {
                 iconSize: 90),
             const SizedBox(width: 50, height: 25)
           ],
-        )
-      );
+        ));
   }
 
   void takePicPressed() {
@@ -99,12 +98,9 @@ class _CameraViewState extends State<CameraView> {
       body: Column(
         children: [
           AspectRatio(
-            aspectRatio: 1/controller.value.aspectRatio,
-            child: CameraPreview(controller)
-          ),
-          Expanded(
-            child: controlRow()
-          ),
+              aspectRatio: 1 / controller.value.aspectRatio,
+              child: CameraPreview(controller)),
+          Expanded(child: controlRow()),
         ],
       ),
     );
@@ -148,7 +144,12 @@ class ImageView extends StatelessWidget {
                     size: 40,
                   ),
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => translationScreen(
+                                  takenImage: File(imagePath),
+                                ))));
                   },
                 )
               ]))
