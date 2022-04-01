@@ -13,18 +13,34 @@ class translationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.black,
         body: Column(children: [
-      Image.file(takenImage),
-      Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                const Text(
-                  "English to Spanish",
-                  style: TextStyle(fontSize: 25.0),
-                ),
-              ]))
-    ]));
+          Image.file(takenImage),
+          Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: Row(
+
+                  //mainAxisAlignment: MainAxisAlignment,
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(left: 20, right: 40),
+                        child: FloatingActionButton(
+                          backgroundColor: Colors.black,
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.blue,
+                            size: 40,
+                          ),
+                          onPressed: () {
+                            Navigator.of(context)
+                                .popUntil((route) => route.isFirst);
+                          },
+                        )),
+                    const Text(
+                      "English to Spanish",
+                      style: TextStyle(fontSize: 25.0, color: Colors.white),
+                    ),
+                  ]))
+        ]));
   }
 }
