@@ -46,29 +46,70 @@ class _CameraViewState extends State<CameraView> {
   Widget controlRow() {
     return Ink(
         color: Colors.black,
+        child: Center(
+          heightFactor: 1,
+          child: Wrap(
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: <Widget>[
+              const IconButton(
+                padding: EdgeInsets.only(top: 30),
+                onPressed: null,
+                icon: Icon(
+                  Icons.flash_auto,
+                  color: Colors.white,
+                ),
+                iconSize: 50,
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.lens_outlined,
+                    color: Colors.white,
+                  ),
+                  iconSize: 90),
+              const SizedBox(width: 50, height: 25)
+            ],
+          ),
+        ));
+  }
+
+ /* Widget controlRow() {
+    return Ink(
+        color: Colors.black,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: <Widget>[
             const IconButton(
+             
               onPressed: null,
+              
               icon: Icon(
+              
+                //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
                 Icons.flash_auto,
-                color: Colors.white,
+                color: Colors.yellow,
               ),
-              iconSize: 32,
+              iconSize: 50,
             ),
-            IconButton(
+
+            IconButton( // circle button
+                // padding: new EdgeInsets.all(0.0),
                 onPressed: takePicPressed,
-                icon: const Icon(
+                icon: const Icon( // icon: const Icon( 
                   Icons.lens_outlined,
-                  color: Colors.white,
+                  color: Colors.red,
+
+                  
+                  
+                
                 ),
                 iconSize: 90),
-            const SizedBox(width: 50, height: 25)
+
+            const SizedBox(width: 50, height: 25) // 50 and 25
           ],
         ));
-  }
+  } */
 
   void takePicPressed() {
     controller.takePicture().then((XFile? file) {
