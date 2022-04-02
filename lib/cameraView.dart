@@ -114,45 +114,58 @@ class ImageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: [
-      Image.file(File(imagePath)),
-      Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.cancel,
-                    color: Colors.red,
-                    size: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+        body: Column(
+          children: [
+            Image.file(File(imagePath)),
+            Expanded(child:Ink(
+              color: Colors.black,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      backgroundColor: Colors.grey,
+                      child: const Icon(
+                        Icons.close_outlined,
+                        color: Colors.amberAccent,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    const Text(
+                      "Image Okay?",
+                      style: TextStyle(
+                        fontFamily: 'Arial',
+                        fontSize: 25.0,
+                        color: Colors.white),
+                    ),
+                    FloatingActionButton(
+                      backgroundColor: Colors.blue,
+                      child: const Icon(
+                        Icons.check,
+                        color: Colors.amberAccent,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => translationScreen(
+                                    takenImage: File(imagePath),
+                                  ))
+                          )
+                        );
+                      },
+                    )
+                  ]
                 ),
-                const Text(
-                  "Image Okay?",
-                  style: TextStyle(fontSize: 25.0),
-                ),
-                FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.check,
-                    color: Colors.green,
-                    size: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => translationScreen(
-                                  takenImage: File(imagePath),
-                                ))));
-                  },
-                )
-              ]))
-    ]));
+              ),
+            )
+            )
+          ]
+        )
+      );
   }
 }
