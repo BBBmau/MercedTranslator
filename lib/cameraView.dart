@@ -1,9 +1,12 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
+import 'dart:async';
+import 'package:google_ml_kit/google_ml_kit.dart';
 
 List<CameraDescription> cameras = [];
 
@@ -109,13 +112,34 @@ class _CameraViewState extends State<CameraView> {
 
 class ImageView extends StatelessWidget {
   final String imagePath;
-  const ImageView({Key? key, required this.imagePath}) : super(key: key);
+  ImageView({Key? key, required this.imagePath}) : super(key: key);
+  late TextDetector _textDetector;
+
+  void initState() {
+    // Initializing the text detector
+    _textDetector = GoogleMlKit.vision.textDetector();
+    _recognizTexts();
+    //super.initState();
+  }
+
+  void _recognizTexts() async {
+    // Creating an InputImage object using the image path
+    final inputImage = InputImage.fromFilePath(imagePath);
+    // Retrieving the RecognisedText from the InputImage
+    final text = await _textDetector.processImage(inputImage);
+    // Finding text String(s)
+    for (TextBlock block in text.blocks) {
+      for (TextLine line in block.lines) {
+        log("${line.text})");
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(children: [
-      Image.file(File(imagePath)),
+      Image.file(File(imagePath)), // THIS PART
       Padding(
           padding: EdgeInsets.only(top: 20),
           child: Row(
