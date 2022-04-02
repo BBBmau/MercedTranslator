@@ -47,16 +47,23 @@ class _CameraViewState extends State<CameraView> {
     return Ink(
         color: Colors.black,
         child: Center(
+          //margin: const EdgeInsets.only(),
           heightFactor: 1,
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
+            
+            
             children: <Widget>[
               const IconButton(
-                padding: EdgeInsets.only(top: 30),
+                
+                padding: EdgeInsets.only(right: 30), // right 30
+                
                 onPressed: null,
                 icon: Icon(
                   Icons.flash_auto,
                   color: Colors.white,
+                  
+
                 ),
                 iconSize: 50,
               ),
@@ -67,7 +74,7 @@ class _CameraViewState extends State<CameraView> {
                     color: Colors.white,
                   ),
                   iconSize: 90),
-              const SizedBox(width: 50, height: 25)
+              const SizedBox(width: 50, height: 25) // w - 50 h - 25
             ],
           ),
         ));
