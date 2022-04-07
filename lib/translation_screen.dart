@@ -40,7 +40,44 @@ class translationScreen extends StatelessWidget {
                       "English to Spanish",
                       style: TextStyle(fontSize: 25.0, color: Colors.white),
                     ),
+                    DropDownMenu(),
                   ]))
         ]));
+  }
+}
+class DropDownMenu extends StatefulWidget {
+  const DropDownMenu({Key? key}) : super(key: key);
+
+  @override
+  State<DropDownMenu> createState() => _DropDownMenuState();
+}
+
+class _DropDownMenuState extends State<DropDownMenu> {
+  String _value = 'One';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: _value,
+      icon: const Icon(
+        Icons.arrow_downward_outlined
+      ),
+      elevation: 16,
+      style: const TextStyle(
+        color: Colors.deepPurple
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          _value = newValue!;
+        });
+      },
+      items: <String>['One', 'Two', 'Free', 'Four']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        );
+      }).toList(),
+      );
   }
 }
