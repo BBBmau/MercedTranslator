@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:cse155/imageView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
+import 'package:image/image.dart' as img;
+import 'dart:io' as IO;
 
 List<CameraDescription> cameras = [];
 late String imagePath;
@@ -69,6 +73,22 @@ class _CameraViewState extends State<CameraView> {
         ));
   }
 
+  void imageResize() {
+    var originalImage =
+        img.decodeImage(IO.File(imageFile!.path).readAsBytesSync());
+
+    var resizedImage = img.copyResize(originalImage!, width: 395, height: 700);
+
+    IO.File(imageFile!.path)
+        .writeAsBytesSync(img.encodePng(resizedImage), mode: IO.FileMode.write);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ImageView(imagePath: imageFile!.path)),
+    );
+  }
+
   void takePicPressed() {
     controller.takePicture().then((XFile? file) {
       if (mounted) {
@@ -76,13 +96,7 @@ class _CameraViewState extends State<CameraView> {
           imageFile = file;
         });
         if (file != null) {
-          print("PICTURE TAKEN IN ${file.path}");
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ImageView(imagePath: file.path.toString())),
-          );
+          imageResize();
         }
       }
     });

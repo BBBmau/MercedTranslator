@@ -1,4 +1,5 @@
-import 'package:flutter/gestures.dart';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
@@ -25,7 +26,6 @@ class TextDetectorPainter extends CustomPainter {
         paint.color = Colors.yellow;
         canvas.drawRect(line.rect, paint);
       }
-
       paint.color = Colors.red;
       canvas.drawRect(block.rect, paint);
     }
@@ -33,7 +33,6 @@ class TextDetectorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(TextDetectorPainter oldDelegate) {
-    return oldDelegate.absoluteImageSize != absoluteImageSize ||
-        oldDelegate.visionText != visionText;
+    return true;
   }
 }
