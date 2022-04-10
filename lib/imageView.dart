@@ -49,7 +49,7 @@ class _ImageViewState extends State<ImageView> {
   Widget _buildResults(RecognisedText scanResults) {
     CustomPainter painter;
     // print(scanResults);
-
+    log("buildResults");
     if (scanResults != null) {
       log("Paint in progress");
       Size imageSize = Size(
@@ -71,16 +71,18 @@ class _ImageViewState extends State<ImageView> {
     return Scaffold(
         body: Column(children: [
       if (textRecognized != null) _buildResults(textRecognized!),
-      Padding(
-          padding: const EdgeInsets.only(top: 20),
+      Expanded(
+          child: Ink(
+        color: Colors.black,
+        child: Center(
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 FloatingActionButton(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.grey,
                   child: const Icon(
-                    Icons.cancel,
-                    color: Colors.red,
+                    Icons.close_outlined,
+                    color: Colors.amberAccent,
                     size: 40,
                   ),
                   onPressed: () {
@@ -89,13 +91,14 @@ class _ImageViewState extends State<ImageView> {
                 ),
                 const Text(
                   "Image Okay?",
-                  style: TextStyle(fontSize: 25.0),
+                  style: TextStyle(
+                      fontFamily: 'Arial', fontSize: 25.0, color: Colors.white),
                 ),
                 FloatingActionButton(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Colors.blue,
                   child: const Icon(
                     Icons.check,
-                    color: Colors.green,
+                    color: Colors.amberAccent,
                     size: 40,
                   ),
                   onPressed: () {
@@ -103,11 +106,13 @@ class _ImageViewState extends State<ImageView> {
                         context,
                         MaterialPageRoute(
                             builder: ((context) => translationScreen(
-                                  takenImage: File(widget.imagePath),
+                                  takenImage: File(imagePath),
                                 ))));
                   },
                 )
-              ]))
+              ]),
+        ),
+      ))
     ]));
   }
 }
