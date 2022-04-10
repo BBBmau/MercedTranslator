@@ -45,7 +45,7 @@ class _CameraViewState extends State<CameraView> {
 
   Widget controlRow() {
     return Ink(
-        color: Colors.black,
+        color: Color(0xFF64B5F6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
