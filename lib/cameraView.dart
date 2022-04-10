@@ -48,7 +48,7 @@ class _CameraViewState extends State<CameraView> {
 
   Widget controlRow() {
     return Ink(
-        color: Colors.black,
+        color: Color(0xFF64B5F6),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -119,3 +119,67 @@ class _CameraViewState extends State<CameraView> {
     );
   }
 }
+
+class ImageView extends StatelessWidget {
+  final String imagePath;
+  const ImageView({Key? key, required this.imagePath}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Column(
+          children: [
+            Image.file(File(imagePath)),
+            Expanded(child:Ink(
+              color: Colors.black,
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FloatingActionButton(
+                      backgroundColor: Colors.grey,
+                      child: const Icon(
+                        Icons.close_outlined,
+                        color: Colors.amberAccent,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                    const Text(
+                      "Image Okay?",
+                      style: TextStyle(
+                        fontFamily: 'Arial',
+                        fontSize: 25.0,
+                        color: Colors.white),
+                    ),
+                    FloatingActionButton(
+                      backgroundColor: Colors.blue,
+                      child: const Icon(
+                        Icons.check,
+                        color: Colors.amberAccent,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => translationScreen(
+                                    takenImage: File(imagePath),
+                                  ))
+                          )
+                        );
+                      },
+                    )
+                  ]
+                ),
+              ),
+            )
+            )
+          ]
+        )
+      );
+  }
+}
+
