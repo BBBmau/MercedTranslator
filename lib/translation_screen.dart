@@ -2,21 +2,60 @@ import 'dart:io';
 import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+import 'imageView.dart'
+    as IV; // Grabbing variables and methods from imageView.dart
 import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
 import 'package:direct_select/direct_select.dart';
+import 'textPainter.dart';
 
-class translationScreen extends StatelessWidget {
-  final File takenImage;
-  const translationScreen({Key? key, required this.takenImage})
+class translationScreen extends StatefulWidget {
+  const translationScreen(
+      {Key? key, required this.takenImagePath, required this.textRecognized})
       : super(key: key);
+  final RecognisedText textRecognized;
+  final String takenImagePath;
+  @override
+  State<translationScreen> createState() => _TranslationScreenState();
+}
+
+class _TranslationScreenState extends State<translationScreen> {
+  late Image takenImage;
+
+  @override
+  void initState() {
+    super.initState();
+    takenImage = Image.file(File(widget.takenImagePath));
+  }
+
+  Widget _buildResults(RecognisedText scanResults) {
+    CustomPainter painter;
+    // print(scanResults);
+    //log("buildResults");
+    if (scanResults != null) {
+      //log("Paint in progress");
+      Size imageSize = Size(
+          (takenImage.width) ?? MediaQuery.of(context).size.width,
+          (takenImage.height) ?? MediaQuery.of(context).size.height);
+      painter = translatedTextPainter(imageSize, scanResults);
+
+      return CustomPaint(
+        child: takenImage,
+        foregroundPainter: painter,
+      );
+    } else {
+      return Container();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Column(children: [
-          Image.file(takenImage),
+          _buildResults(widget.textRecognized),
+          //Image.file(File(widget.takenImagePath)),
           Padding(
               padding: EdgeInsets.only(top: 20),
               child: Row(
@@ -42,11 +81,11 @@ class translationScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 25.0, color: Colors.white),
                     ),
                     // DropDownMenu(),
-
                   ]))
         ]));
   }
 }
+
 class DropDownMenu extends StatefulWidget {
   const DropDownMenu({Key? key}) : super(key: key);
 
@@ -60,32 +99,29 @@ class _DropDownMenuState extends State<DropDownMenu> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      
       menuMaxHeight: 200,
       value: _value,
-      icon: const Icon(
-        Icons.arrow_downward_outlined
-        
-      ),
+      icon: const Icon(Icons.arrow_downward_outlined),
       elevation: 8,
-      style: const TextStyle(
-        color: Colors.amber
-      ),
+      style: const TextStyle(color: Colors.amber),
       onChanged: (String? newValue) {
         setState(() {
           _value = newValue!;
         });
       },
-      items: LanguageList()._langs.map((description, value) {
-        return MapEntry(
-          description,
-          DropdownMenuItem<String>(
-            value: value,
-            child: Text(description),
-          )
-        );
-      }).values.toList(),
-      );
+      items: LanguageList()
+          ._langs
+          .map((description, value) {
+            return MapEntry(
+                description,
+                DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(description),
+                ));
+          })
+          .values
+          .toList(),
+    );
   }
 }
 
