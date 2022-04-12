@@ -106,7 +106,7 @@ class _ImageViewState extends State<ImageView> {
                         context,
                         MaterialPageRoute(
                             builder: ((context) => translationScreen(
-                                  takenImage: File(imagePath),
+                                  takenImage: File(widget.imagePath),
                                 ))));
                   },
                 )
