@@ -74,6 +74,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flash",
+      "rootUri": "file:///Users/serenitybassett/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/flash-2.0.3+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///Users/serenitybassett/Developer/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -254,7 +260,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-03-31T01:07:04.674792Z",
+  "generated": "2022-04-13T23:39:31.468807Z",
   "generator": "pub",
   "generatorVersion": "2.16.1"
 }
