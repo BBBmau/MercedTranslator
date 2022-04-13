@@ -74,6 +74,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flash",
+      "rootUri": "file:///home/mau/snap/flutter/common/flutter/.pub-cache/hosted/pub.dartlang.org/flash-2.0.3+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///home/mau/snap/flutter/common/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -254,7 +260,7 @@
       "languageVersion": "2.16"
     }
   ],
-  "generated": "2022-04-13T23:42:59.835935Z",
+  "generated": "2022-04-13T23:47:19.509633Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }
