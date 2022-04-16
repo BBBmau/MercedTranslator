@@ -19,55 +19,56 @@ class CameraView extends StatefulWidget {
 }
 /// added part
 
-class FlashPage extends StatefulWidget {
-  const FlashPage({Key? key}) : super(key: key);
+// class FlashPage extends StatefulWidget {
+//   const FlashPage({Key? key}) : super(key: key);
 
-  @override
-  State<FlashPage> createState() => _FlashPageState();
-}
+//   @override
+//   State<FlashPage> createState() => _FlashPageState();
+// }
 
-class _FlashPageState extends State<FlashPage> {
-  late CameraController _cameraController;
-  int flashStatus = 0;
-  List<Icon> flash = [
-    Icon(Icons.flash_on),
-    Icon(Icons.flash_off),
-    Icon(Icons.flash_auto)
-  ];
+// class _FlashPageState extends State<FlashPage> {
+//   late CameraController _cameraController;
+// //   int flashStatus = 0;
+// //   List<Icon> flash = [
+// //     Icon(Icons.flash_on),
+// //     Icon(Icons.flash_off),
+// //     Icon(Icons.flash_auto)
+// //   ];
 
 
-// added this 
-   List<FlashMode> flashMode = [
-    FlashMode.always,
-    FlashMode.off,
-    FlashMode.auto
-  ];
+// // // added this 
+// //    List<FlashMode> flashMode = [
+// //     FlashMode.always,
+// //     FlashMode.off,
+// //     FlashMode.auto
+// //   ];
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flash demo',
-      home: Scaffold(
-        body: Center(
-          child: IconButton(
-              icon: flash[flashStatus],
-              onPressed: () {
-                setState(() {
-                  flashStatus = (flashStatus + 1) % 3;
-                  _cameraController.setFlashMode(flashMode[flashStatus]);
-                });
-              }),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       title: 'Flash demo',
+//       home: Scaffold(
+//         body: Center(
+//           child: IconButton(
+//               icon: flash[flashStatus],
+//               onPressed: () {
+//                 setState(() {
+//                   flashStatus = (flashStatus + 1) % 3;
+//                   _cameraController.setFlashMode(flashMode[flashStatus]);
+//                 });
+//               }),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class _CameraViewState extends State<CameraView> {
   late CameraController controller;
   XFile? imageFile;
   static bool flash = false;  // I don't know if this is the right place
-  int flashStatus = 0;
+  // int flashStatus = 0;
+  FlashMode? _currentFlashMode;
 
   getPermission() async {
     await Permission.camera.request();
@@ -80,6 +81,7 @@ class _CameraViewState extends State<CameraView> {
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     controller = CameraController(cameras[0], ResolutionPreset.max);
+    _currentFlashMode = controller!.value.flashMode;
     controller.initialize().then((_) {
       if (!mounted) {
         return;
@@ -99,21 +101,47 @@ class _CameraViewState extends State<CameraView> {
     return Ink(
         color: Colors.black,
         child: Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            const IconButton(
+            // const IconButton(
              
-              onPressed: null,
+            //   onPressed: null,
               
-              icon: Icon(
+            //   icon: Icon(
               
-                //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+            //     //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
+            //     Icons.flash_auto,
+            //     color: Colors.yellow,
+            //   ),
+            //   iconSize: 50,
+            // ),
+
+            InkWell(
+              onTap: () async {
+                setState(() {
+                  if(_currentFlashMode == FlashMode.off) {
+                     _currentFlashMode = FlashMode.torch;
+                  } else {
+                    _currentFlashMode = FlashMode.off;
+                  }
+                 
+                });
+                await controller.setFlashMode(
+                  _currentFlashMode!,
+                );
+              },
+
+              child: Icon(
                 Icons.flash_auto,
-                color: Colors.yellow,
-              ),
-              iconSize: 50,
+                color:
+                  _currentFlashMode == FlashMode.torch
+                    ? Colors.amber
+                    : Colors.white,
+                size: 90,
+              )
             ),
+
 
             IconButton( // circle button
                 // padding: new EdgeInsets.all(0.0),
