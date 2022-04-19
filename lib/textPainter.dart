@@ -1,15 +1,26 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:google_ml_kit/google_ml_kit.dart' as ML;
 import 'package:translator/translator.dart';
 
 // Paints rectangles around all the text in the image.
-class translatedTextPainter extends CustomPainter {
-  translatedTextPainter(this.absoluteImageSize, this.visionText);
+
+List<translatedBox> textList = [];
+
+class translatedBox {
+  String translatedText;
+  Rect rectangleCoords;
+  Offset cornerPoints;
+
+  translatedBox(this.translatedText, this.rectangleCoords, this.cornerPoints);
+}
+
+class filledBoxPainter extends CustomPainter {
+  filledBoxPainter(this.absoluteImageSize, this.visionText);
 
   final Size absoluteImageSize;
-  final RecognisedText visionText;
+  final ML.RecognisedText visionText;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -17,41 +28,46 @@ class translatedTextPainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 2.0;
 
-    // init translator
+    // TextSpan span = new TextSpan(text: 'TESTING');
+    // TextPainter tp = new TextPainter(
+    //     textScaleFactor: 20,
+    //     text: span,
+    //     textAlign: TextAlign.left,
+    //     textDirection: TextDirection.ltr);
+    // tp.layout();
+    // tp.paint(canvas, new Offset(5.0, 5.0));
+
     final translator = GoogleTranslator();
 
-    for (TextBlock block in visionText.blocks) {
-      for (TextLine line in block.lines) {
-        for (TextElement element in line.elements) {
-          //paint.color = Colors.green;
-          //canvas.drawRect(element.rect, paint);
-        }
+    // translates text found in image and stores in
+    for (ML.TextBlock block in visionText.blocks) {
+      for (ML.TextLine line in block.lines) {
+        String translation;
 
-        paint.color = Colors.yellow;
-        //canvas.drawRect(line.rect, paint);
-
-        // adds text
-        translator.translate(line.text).then((text) {
-          // ignore: unnecessary_new
-          log("$text");
-          TextSpan tspan = TextSpan(
-              style: TextStyle(color: Colors.grey[600]), text: text.text);
-          TextPainter tpainter = TextPainter(
-              text: tspan,
-              textAlign: TextAlign.left,
-              textDirection: TextDirection.ltr);
-          tpainter.layout();
-          tpainter.paint(canvas, line.cornerPoints[0]);
-          log("Corner points: ");
-        });
+        translator.translate(line.text).then(((value) {
+          translation = value.text;
+          log("$translation");
+          textList
+              .add(translatedBox(translation, line.rect, line.cornerPoints[0]));
+        }));
       }
-      //paint.color = Colors.blue;
-      //canvas.drawRect(block.rect, paint);
+    }
+
+    for (int i = 0; i < textList.length; i++) {
+      paint.color = Colors.blue;
+      canvas.drawRect(textList[i].rectangleCoords, paint);
+      TextSpan span = TextSpan(text: textList[i].translatedText);
+      TextPainter tp = TextPainter(
+          text: span,
+          textAlign: TextAlign.left,
+          textDirection: TextDirection.ltr);
+      tp.layout();
+      tp.paint(canvas, textList[i].cornerPoints);
     }
   }
 
   @override
-  bool shouldRepaint(translatedTextPainter oldDelegate) {
+  bool shouldRepaint(filledBoxPainter oldDelegate) {
     return true;
   }
 }

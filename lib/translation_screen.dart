@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:developer';
 import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,12 +35,12 @@ class _TranslationScreenState extends State<translationScreen> {
     // print(scanResults);
     //log("buildResults");
     if (scanResults != null) {
-      //log("Paint in progress");
+      log("Paint in progress");
       Size imageSize = Size(
           (takenImage.width) ?? MediaQuery.of(context).size.width,
           (takenImage.height) ?? MediaQuery.of(context).size.height);
-      painter = translatedTextPainter(imageSize, scanResults);
-
+      painter = filledBoxPainter(imageSize, scanResults);
+      log("$imageSize");
       return CustomPaint(
         child: takenImage,
         foregroundPainter: painter,
