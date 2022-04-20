@@ -10,6 +10,7 @@ import 'dart:io' as IO;
 
 List<CameraDescription> cameras = [];
 late String imagePath;
+late bool isLoading;
 
 class CameraView extends StatefulWidget {
   const CameraView({Key? key}) : super(key: key);
@@ -28,6 +29,7 @@ class _CameraViewState extends State<CameraView> {
 
   @override
   void initState() {
+    isLoading = false;
     SystemChrome.setEnabledSystemUIOverlays([]);
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -90,6 +92,9 @@ class _CameraViewState extends State<CameraView> {
   }
 
   void takePicPressed() {
+    setState(() {
+      isLoading = true;
+    });
     controller.takePicture().then((XFile? file) {
       if (mounted) {
         setState(() {
@@ -108,7 +113,8 @@ class _CameraViewState extends State<CameraView> {
       return Container();
     }
     return Scaffold(
-      body: Column(
+        body: Stack(children: [
+      Column(
         children: [
           AspectRatio(
               aspectRatio: 1 / controller.value.aspectRatio,
@@ -116,6 +122,32 @@ class _CameraViewState extends State<CameraView> {
           Expanded(child: controlRow()),
         ],
       ),
-    );
+      if (isLoading)
+        SizedBox(
+          child: Column(children: [
+            Container(
+              foregroundDecoration: BoxDecoration(
+                color: Colors.grey,
+                backgroundBlendMode: BlendMode.saturation,
+              ),
+              height: 300,
+            ),
+            CircularProgressIndicator(
+                strokeWidth: 10.0,
+                backgroundColor: Colors.blue,
+                color: Color.fromARGB(255, 255, 223, 127)),
+            Container(
+                foregroundDecoration: BoxDecoration(
+                  color: Colors.grey,
+                  backgroundBlendMode: BlendMode.saturation,
+                ),
+                height: 200)
+          ]),
+          width: 395,
+          height: 700,
+        )
+      else
+        Container(),
+    ]));
   }
 }
