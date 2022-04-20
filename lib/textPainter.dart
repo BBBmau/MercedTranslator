@@ -26,15 +26,22 @@ class filledBoxPainter extends CustomPainter with ChangeNotifier {
   void paint(Canvas canvas, Size size) {
     final Paint paint = Paint()
       ..style = PaintingStyle.fill
-      ..strokeWidth = 2.0;
+      ..strokeWidth = 2.0
+      ..color = Colors.blue;
+
+    final Paint borderPaint = Paint()
+      ..style = PaintingStyle.fill
+      ..strokeWidth = 4.0
+      ..color = Color.fromARGB(255, 255, 223, 127);
 
     log("The textList length: ${textList.length}");
 
     int i = 0;
     for (ML.TextBlock block in visionText.blocks) {
       for (ML.TextLine line in block.lines) {
-        paint.color = Colors.blue;
+        canvas.drawRect(textList[i].rectangleCoords.inflate(3), borderPaint);
         canvas.drawRect(textList[i].rectangleCoords, paint);
+
         i += 1;
       }
     }

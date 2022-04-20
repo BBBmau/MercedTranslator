@@ -51,7 +51,7 @@ class _TranslationScreenState extends State<translationScreen> {
 
   Future<Widget> _buildResults(RecognisedText scanResults) async {
     log("Paint in progress");
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(Duration(seconds: 2));
     painter =
         filledBoxPainter(textList: textList, visionText: widget.textRecognized);
 
@@ -67,7 +67,7 @@ class _TranslationScreenState extends State<translationScreen> {
   // }
 
   final Future<Widget> _waiting = Future<Widget>.delayed(
-    const Duration(seconds: 2),
+    const Duration(seconds: 4),
     () => Container(),
   );
 
@@ -98,8 +98,17 @@ class _TranslationScreenState extends State<translationScreen> {
                     isComplex: true,
                   );
                 } else {
-                  return Container(
-                    child: const CircularProgressIndicator(),
+                  return SizedBox(
+                    child: Column(children: const [
+                      SizedBox(
+                        height: 300,
+                      ),
+                      CircularProgressIndicator(
+                          strokeWidth: 10.0,
+                          backgroundColor: Colors.blue,
+                          color: Color.fromARGB(255, 255, 223, 127)),
+                      SizedBox(height: 200)
+                    ]),
                     width: 395,
                     height: 700,
                   );
