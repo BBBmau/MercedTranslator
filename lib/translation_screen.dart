@@ -1,15 +1,18 @@
 import 'dart:io';
 import 'dart:developer';
+import 'dart:isolate';
 import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:translator/translator.dart';
 import 'imageView.dart'
     as IV; // Grabbing variables and methods from imageView.dart
 import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
 import 'package:direct_select/direct_select.dart';
 import 'textPainter.dart';
+import 'package:flutter/src/widgets/automatic_keep_alive.dart';
 
 class translationScreen extends StatefulWidget {
   const translationScreen(
@@ -23,39 +26,85 @@ class translationScreen extends StatefulWidget {
 
 class _TranslationScreenState extends State<translationScreen> {
   late Image takenImage;
+  late CustomPainter painter;
 
   @override
   void initState() {
     super.initState();
+    for (TextBlock block in widget.textRecognized.blocks) {
+      for (TextLine line in block.lines) {
+        String translation;
+
+        translator.translate(line.text).then(((value) {
+          translation = value.text;
+          log("$translation");
+          textList
+              .add(translatedBox(translation, line.rect, line.cornerPoints[0]));
+        }));
+      }
+    }
+
     takenImage = Image.file(File(widget.takenImagePath));
   }
 
-  Widget _buildResults(RecognisedText scanResults) {
-    CustomPainter painter;
-    // print(scanResults);
-    //log("buildResults");
-    if (scanResults != null) {
-      log("Paint in progress");
-      Size imageSize = Size(
-          (takenImage.width) ?? MediaQuery.of(context).size.width,
-          (takenImage.height) ?? MediaQuery.of(context).size.height);
-      painter = filledBoxPainter(imageSize, scanResults);
-      log("$imageSize");
-      return CustomPaint(
-        child: takenImage,
-        foregroundPainter: painter,
-      );
-    } else {
-      return Container();
-    }
+  var translator = GoogleTranslator();
+
+  Future<Widget> _buildResults(RecognisedText scanResults) async {
+    log("Paint in progress");
+    await Future.delayed(Duration(seconds: 1));
+    painter =
+        filledBoxPainter(textList: textList, visionText: widget.textRecognized);
+
+    return Container();
   }
+
+  // Widget paintedText() {
+  //   CustomPainter textPainter = translatedPainter(textList);
+  //   return RepaintBoundary(
+  //       child: CustomPaint(
+  //           child: _buildResults(widget.textRecognized),
+  //           foregroundPainter: textPainter));
+  // }
+
+  final Future<Widget> _waiting = Future<Widget>.delayed(
+    const Duration(seconds: 2),
+    () => Container(),
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Column(children: [
-          _buildResults(widget.textRecognized),
+          // FutureBuilder<Widget>(
+          //   initialData: Container(),
+          //   builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+          //     if (snapshot.connectionState == ConnectionState.waiting) {
+          //       return const CircularProgressIndicator();
+          //     } else if (snapshot.connectionState == ConnectionState.done) {
+          //       return paintedText();
+          //     } else {
+          //       return Container();
+          //     }
+          //   },
+          // ),
+          FutureBuilder<Widget>(
+              future: _buildResults(widget.textRecognized),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return CustomPaint(
+                    child: takenImage,
+                    foregroundPainter: painter,
+                    isComplex: true,
+                  );
+                } else {
+                  return Container(
+                    child: const CircularProgressIndicator(),
+                    width: 395,
+                    height: 700,
+                  );
+                }
+              }),
           //Image.file(File(widget.takenImagePath)),
           Padding(
               padding: EdgeInsets.only(top: 20),
@@ -73,6 +122,7 @@ class _TranslationScreenState extends State<translationScreen> {
                             size: 40,
                           ),
                           onPressed: () {
+                            textList.clear();
                             Navigator.of(context)
                                 .popUntil((route) => route.isFirst);
                           },

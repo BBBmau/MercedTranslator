@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart' as ML;
-import 'package:translator/translator.dart';
+import 'translation_screen.dart';
 
 // Paints rectangles around all the text in the image.
 
@@ -16,11 +16,11 @@ class translatedBox {
   translatedBox(this.translatedText, this.rectangleCoords, this.cornerPoints);
 }
 
-class filledBoxPainter extends CustomPainter {
-  filledBoxPainter(this.absoluteImageSize, this.visionText);
-
-  final Size absoluteImageSize;
+class filledBoxPainter extends CustomPainter with ChangeNotifier {
+  final List<translatedBox> textList;
   final ML.RecognisedText visionText;
+
+  filledBoxPainter({required this.textList, required this.visionText});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -28,34 +28,18 @@ class filledBoxPainter extends CustomPainter {
       ..style = PaintingStyle.fill
       ..strokeWidth = 2.0;
 
-    // TextSpan span = new TextSpan(text: 'TESTING');
-    // TextPainter tp = new TextPainter(
-    //     textScaleFactor: 20,
-    //     text: span,
-    //     textAlign: TextAlign.left,
-    //     textDirection: TextDirection.ltr);
-    // tp.layout();
-    // tp.paint(canvas, new Offset(5.0, 5.0));
+    log("The textList length: ${textList.length}");
 
-    final translator = GoogleTranslator();
-
-    // translates text found in image and stores in
+    int i = 0;
     for (ML.TextBlock block in visionText.blocks) {
       for (ML.TextLine line in block.lines) {
-        String translation;
-
-        translator.translate(line.text).then(((value) {
-          translation = value.text;
-          log("$translation");
-          textList
-              .add(translatedBox(translation, line.rect, line.cornerPoints[0]));
-        }));
+        paint.color = Colors.blue;
+        canvas.drawRect(textList[i].rectangleCoords, paint);
+        i += 1;
       }
     }
 
     for (int i = 0; i < textList.length; i++) {
-      paint.color = Colors.blue;
-      canvas.drawRect(textList[i].rectangleCoords, paint);
       TextSpan span = TextSpan(text: textList[i].translatedText);
       TextPainter tp = TextPainter(
           text: span,
@@ -63,11 +47,12 @@ class filledBoxPainter extends CustomPainter {
           textDirection: TextDirection.ltr);
       tp.layout();
       tp.paint(canvas, textList[i].cornerPoints);
+      log("Text Painted!");
     }
   }
 
   @override
   bool shouldRepaint(filledBoxPainter oldDelegate) {
-    return true;
+    return oldDelegate == null;
   }
 }
