@@ -5,6 +5,7 @@ import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'boxPainter.dart';
+import 'cameraView.dart' as CV;
 
 class ImageView extends StatefulWidget {
   const ImageView({Key? key, required this.imagePath}) : super(key: key);
@@ -22,7 +23,7 @@ class _ImageViewState extends State<ImageView> {
   void initState() {
     super.initState();
     takenImage = Image.file(File(widget.imagePath));
-
+    CV.isLoading = false;
     // Initializing the text detector
     _textDetector = GoogleMlKit.vision.textDetector();
     _recognizeTexts();
@@ -57,6 +58,7 @@ class _ImageViewState extends State<ImageView> {
           (takenImage.height) ?? MediaQuery.of(context).size.height);
       painter = TextDetectorPainter(imageSize, scanResults);
 
+      log("$imageSize");
       return CustomPaint(
         child: takenImage,
         foregroundPainter: painter,
@@ -106,7 +108,8 @@ class _ImageViewState extends State<ImageView> {
                         context,
                         MaterialPageRoute(
                             builder: ((context) => translationScreen(
-                                  takenImage: File(widget.imagePath),
+                                  takenImagePath: widget.imagePath,
+                                  textRecognized: textRecognized!,
                                 ))));
                   },
                 )
