@@ -161,7 +161,7 @@ class _CameraViewState extends State<CameraView> {
                 onPressed: takePicPressed,
                 icon: const Icon( // icon: const Icon( 
                   Icons.lens_outlined,
-                  color: Colors.pink,
+                  color: Colors.white,
 
                   
                   
