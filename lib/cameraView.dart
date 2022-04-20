@@ -104,6 +104,14 @@ class _CameraViewState extends State<CameraView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            
+             
+
+
+
+
+
+
             // const IconButton(
              
             //   onPressed: null,
@@ -117,38 +125,43 @@ class _CameraViewState extends State<CameraView> {
             //   iconSize: 50,
             // ),
 
-            InkWell(
-              onTap: () async {
-                setState(() {
-                  if(_currentFlashMode == FlashMode.off) {
-                     _currentFlashMode = FlashMode.torch;
-                  } else {
-                    _currentFlashMode = FlashMode.off;
-                  }
-                 
-                });
-                await controller.setFlashMode(
-                  _currentFlashMode!,
-                );
-              },
+            Padding(
+              padding: const EdgeInsets.only(left: 85, top: 25),
+              child: InkWell(
+                onTap: () async {
+                  setState(() {
+                    if(_currentFlashMode == FlashMode.off) {
+                       _currentFlashMode = FlashMode.torch;
+                    } else {
+                      _currentFlashMode = FlashMode.off;
+                    }
+                   
+                  });
+                  await controller.setFlashMode(
+                    _currentFlashMode!,
+                  );
+                },
 
-              child: Icon(
-                Icons.flash_auto,
-                color:
-                  _currentFlashMode == FlashMode.torch
-                    ? Colors.amber
-                    : Colors.white,
-                size: 90,
-              )
+                child: Icon(
+                  Icons.flash_auto,
+                  color:
+                    _currentFlashMode == FlashMode.torch
+                      ? Colors.amber
+                      : Colors.white,
+                  size: 35,
+                  
+                  // padding: EdgeInsets.only(top: 30),
+                )
+              ),
             ),
 
 
             IconButton( // circle button
-                // padding: new EdgeInsets.all(0.0),
+                padding: new EdgeInsets.only(right: 75),
                 onPressed: takePicPressed,
                 icon: const Icon( // icon: const Icon( 
                   Icons.lens_outlined,
-                  color: Colors.red,
+                  color: Colors.pink,
 
                   
                   
@@ -156,7 +169,7 @@ class _CameraViewState extends State<CameraView> {
                 ),
                 iconSize: 90),
 
-            const SizedBox(width: 50, height: 25) // 50 and 25
+            const SizedBox(width: 30, height: 20) // 50 and 25
           ],
         ));
   } 
