@@ -9,8 +9,7 @@ import 'package:camera/camera.dart';
 import 'package:image/image.dart' as img;
 import 'dart:io' as IO;
 
-
-// camera: ^0.9.4+18 --> see if this needs to be added/updated 
+// camera: ^0.9.4+18 --> see if this needs to be added/updated
 List<CameraDescription> cameras = [];
 late String imagePath;
 late bool isLoading;
@@ -20,6 +19,7 @@ class CameraView extends StatefulWidget {
   @override
   State<CameraView> createState() => _CameraViewState();
 }
+
 /// added part
 
 // class FlashPage extends StatefulWidget {
@@ -38,8 +38,7 @@ class CameraView extends StatefulWidget {
 // //     Icon(Icons.flash_auto)
 // //   ];
 
-
-// // // added this 
+// // // added this
 // //    List<FlashMode> flashMode = [
 // //     FlashMode.always,
 // //     FlashMode.off,
@@ -69,7 +68,7 @@ class CameraView extends StatefulWidget {
 class _CameraViewState extends State<CameraView> {
   late CameraController controller;
   XFile? imageFile;
-  static bool flash = false;  // I don't know if this is the right place
+  static bool flash = false; // I don't know if this is the right place
   // int flashStatus = 0;
   FlashMode? _currentFlashMode;
 
@@ -100,7 +99,6 @@ class _CameraViewState extends State<CameraView> {
     super.dispose();
   }
 
-
   Widget controlRow() {
     return Ink(
         color: Colors.black,
@@ -108,20 +106,12 @@ class _CameraViewState extends State<CameraView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            
-             
-
-
-
-
-
-
             // const IconButton(
-             
+
             //   onPressed: null,
-              
+
             //   icon: Icon(
-              
+
             //     //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
             //     Icons.flash_auto,
             //     color: Colors.yellow,
@@ -132,71 +122,46 @@ class _CameraViewState extends State<CameraView> {
             Padding(
               padding: const EdgeInsets.only(left: 85, top: 25),
               child: InkWell(
-                onTap: () async {
-                  setState(() {
-                    if(_currentFlashMode == FlashMode.off) {
-                       _currentFlashMode = FlashMode.torch;
-                    } else {
-                      _currentFlashMode = FlashMode.off;
-                    }
-                   
-                  });
-                  await controller.setFlashMode(
-                    _currentFlashMode!,
-                  );
-                },
+                  onTap: () async {
+                    setState(() {
+                      if (_currentFlashMode == FlashMode.off) {
+                        _currentFlashMode = FlashMode.torch;
+                      } else {
+                        _currentFlashMode = FlashMode.off;
+                      }
+                    });
+                    await controller.setFlashMode(
+                      _currentFlashMode!,
+                    );
+                  },
+                  child: Icon(
+                    Icons.flash_on_rounded,
+                    color: _currentFlashMode == FlashMode.torch
+                        ? Colors.amber
+                        : Colors.white,
+                    size: 35,
 
-                child: Icon(
-                  Icons.flash_auto,
-                  color:
-                    _currentFlashMode == FlashMode.torch
-                      ? Colors.amber
-                      : Colors.white,
-                  size: 35,
-                  
-                  // padding: EdgeInsets.only(top: 30),
-                )
-              ),
+                    // padding: EdgeInsets.only(top: 30),
+                  )),
             ),
 
-
-            IconButton( // circle button
+            IconButton(
+                // circle button
                 padding: new EdgeInsets.only(right: 75),
                 onPressed: takePicPressed,
-                icon: const Icon( // icon: const Icon( 
+                icon: const Icon(
+                  // icon: const Icon(
                   Icons.lens_outlined,
                   color: Colors.white,
-
-                  
-                  
-                
                 ),
                 iconSize: 90),
 
             const SizedBox(width: 30, height: 20) // 50 and 25
           ],
         ));
-  } 
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /* Widget controlRow() {
+  /* Widget controlRow() {
     return Ink(
         color: Colors.black,
         child: Center(
@@ -298,25 +263,20 @@ class _CameraViewState extends State<CameraView> {
         ],
       ),
       if (isLoading)
-        SizedBox(
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.grey,
+            backgroundBlendMode: BlendMode.saturation,
+          ),
           child: Column(children: [
             Container(
-              foregroundDecoration: BoxDecoration(
-                color: Colors.grey,
-                backgroundBlendMode: BlendMode.saturation,
-              ),
               height: 300,
             ),
-            CircularProgressIndicator(
+            const CircularProgressIndicator(
                 strokeWidth: 10.0,
                 backgroundColor: Colors.blue,
                 color: Color.fromARGB(255, 255, 223, 127)),
-            Container(
-                foregroundDecoration: BoxDecoration(
-                  color: Colors.grey,
-                  backgroundBlendMode: BlendMode.saturation,
-                ),
-                height: 200)
+            Container(height: 360)
           ]),
           width: 395,
           height: 700,
@@ -327,8 +287,7 @@ class _CameraViewState extends State<CameraView> {
   }
 }
 
-
-           /* 
+/* 
             children: <Widget>[
               int flashStatus = 0,
               List<Icons> flash = [Icons.flash_on, Icons.flash_off, Icons.flash_auto];
@@ -341,9 +300,9 @@ class _CameraViewState extends State<CameraView> {
                       flashStatus = (flashStatus + 1) % 3;
                     });
                   }),
-                ), */ 
-        
-              /* IconButton(
+                ), */
+
+/* IconButton(
                 padding: EdgeInsets.only(right: 30), // right 30
                 onPressed: null,
                 icon: Icon(
@@ -361,13 +320,11 @@ class _CameraViewState extends State<CameraView> {
                     flash 
                       ? _cameraController.setFlashMode(FlashMode.torch) : _cameraController.set(FlashMode.off);
                 }),
-              ), */ 
+              ), */
 
+// }
 
-              
-  // }
-
- /* Widget controlRow() {
+/* Widget controlRow() {
     return Ink(
         color: Colors.black,
         child: Row(
