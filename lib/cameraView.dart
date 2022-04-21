@@ -1,19 +1,22 @@
-import 'dart:io';
-import 'package:cse155/translation_screen.dart';
+import 'dart:developer';
+import 'imageView.dart';
+import 'translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:camera/camera.dart';
+import 'package:image/image.dart' as img;
+import 'dart:io' as IO;
 
 
 // camera: ^0.9.4+18 --> see if this needs to be added/updated 
 List<CameraDescription> cameras = [];
+late String imagePath;
+late bool isLoading;
 
 class CameraView extends StatefulWidget {
   const CameraView({Key? key}) : super(key: key);
- 
-
   @override
   State<CameraView> createState() => _CameraViewState();
 }
@@ -66,6 +69,7 @@ class _CameraViewState extends State<CameraView> {
 
   @override
   void initState() {
+    isLoading = false;
     SystemChrome.setEnabledSystemUIOverlays([]);
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
@@ -107,24 +111,33 @@ class _CameraViewState extends State<CameraView> {
             
   }
 
-  // commented code goes here for reference 
+  void imageResize() {
+    var originalImage =
+        img.decodeImage(IO.File(imageFile!.path).readAsBytesSync());
 
-//// take picture method here 
+    var resizedImage = img.copyResize(originalImage!, width: 395, height: 700);
+
+    IO.File(imageFile!.path)
+        .writeAsBytesSync(img.encodePng(resizedImage), mode: IO.FileMode.write);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ImageView(imagePath: imageFile!.path)),
+    );
+  }
+
   void takePicPressed() {
-   
+    setState(() {
+      isLoading = true;
+    });
     controller.takePicture().then((XFile? file) {
       if (mounted) {
         setState(() {
           imageFile = file;
         });
         if (file != null) {
-          print("PICTURE TAKEN IN ${file.path}");
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    ImageView(imagePath: file.path.toString())),
-          );
+          imageResize();
         }
       }
     });
@@ -136,7 +149,8 @@ class _CameraViewState extends State<CameraView> {
       return Container();
     }
     return Scaffold(
-      body: Column(
+        body: Stack(children: [
+      Column(
         children: [
           AspectRatio(
               aspectRatio: 1 / controller.value.aspectRatio,
@@ -144,56 +158,32 @@ class _CameraViewState extends State<CameraView> {
           Expanded(child: controlRow()),
         ],
       ),
-    );
-  }
-}
-
-class ImageView extends StatelessWidget {
-  final String imagePath;
-  const ImageView({Key? key, required this.imagePath}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(children: [
-      Image.file(File(imagePath)),
-      Padding(
-          padding: EdgeInsets.only(top: 20),
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.cancel,
-                    color: Colors.red,
-                    size: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+      if (isLoading)
+        SizedBox(
+          child: Column(children: [
+            Container(
+              foregroundDecoration: BoxDecoration(
+                color: Colors.grey,
+                backgroundBlendMode: BlendMode.saturation,
+              ),
+              height: 300,
+            ),
+            CircularProgressIndicator(
+                strokeWidth: 10.0,
+                backgroundColor: Colors.blue,
+                color: Color.fromARGB(255, 255, 223, 127)),
+            Container(
+                foregroundDecoration: BoxDecoration(
+                  color: Colors.grey,
+                  backgroundBlendMode: BlendMode.saturation,
                 ),
-                const Text(
-                  "Image Okay?",
-                  style: TextStyle(fontSize: 25.0),
-                ),
-                FloatingActionButton(
-                  backgroundColor: Colors.white,
-                  child: const Icon(
-                    Icons.check,
-                    color: Colors.green,
-                    size: 40,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: ((context) => translationScreen(
-                                  takenImage: File(imagePath),
-                                ))));
-                  },
-                )
-              ]))
+                height: 200)
+          ]),
+          width: 395,
+          height: 700,
+        )
+      else
+        Container(),
     ]));
   }
 }
