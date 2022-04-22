@@ -38,12 +38,11 @@ class filledBoxPainter extends CustomPainter with ChangeNotifier {
 
     int i = 0;
     for (ML.TextBlock block in visionText.blocks) {
-      for (ML.TextLine line in block.lines) {
-        canvas.drawRect(textList[i].rectangleCoords.inflate(3), borderPaint);
-        canvas.drawRect(textList[i].rectangleCoords, paint);
+      for (ML.TextLine line in block.lines) {}
+      canvas.drawRect(textList[i].rectangleCoords.inflate(3), borderPaint);
+      canvas.drawRect(textList[i].rectangleCoords, paint);
 
-        i += 1;
-      }
+      i += 1;
     }
 
     for (int i = 0; i < textList.length; i++) {

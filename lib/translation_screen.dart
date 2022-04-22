@@ -27,21 +27,36 @@ class translationScreen extends StatefulWidget {
 class _TranslationScreenState extends State<translationScreen> {
   late Image takenImage;
   late CustomPainter painter;
+  String languageDetected = "";
 
   @override
   void initState() {
     super.initState();
     for (TextBlock block in widget.textRecognized.blocks) {
       for (TextLine line in block.lines) {
-        String translation;
+        // String translation;
 
-        translator.translate(line.text).then(((value) {
-          translation = value.text;
-          log("$translation");
-          textList
-              .add(translatedBox(translation, line.rect, line.cornerPoints[0]));
-        }));
+        // translator.translate(line.text).then(((value) {
+        //   translation = value.text;
+        //   setState(() {
+        //     languageDetected = value.sourceLanguage.name;
+        //   });
+        //   log("$translation");
+        //   textList
+        //       .add(translatedBox(translation, line.rect, line.cornerPoints[0]));
+        // }));
       }
+      String translation;
+
+      translator.translate(block.text).then(((value) {
+        translation = value.text;
+        setState(() {
+          languageDetected = value.sourceLanguage.name;
+        });
+        log("$translation");
+        textList
+            .add(translatedBox(translation, block.rect, block.cornerPoints[0]));
+      }));
     }
 
     takenImage = Image.file(File(widget.takenImagePath));
@@ -115,33 +130,73 @@ class _TranslationScreenState extends State<translationScreen> {
                 }
               }),
           //Image.file(File(widget.takenImagePath)),
-          Padding(
-              padding: EdgeInsets.only(top: 20),
-              child: Row(
+          Row(
 
-                  //mainAxisAlignment: MainAxisAlignment,
-                  children: <Widget>[
+              //mainAxisAlignment: MainAxisAlignment,
+              children: <Widget>[
+                Padding(
+                    padding: EdgeInsets.only(left: 20, top: 20, right: 17),
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.blue,
+                        size: 40,
+                      ),
+                      onPressed: () {
+                        textList.clear();
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
+                      },
+                    )),
+                if (languageDetected == "")
+                  const Text(
+                    "No Text Detected",
+                    style: TextStyle(fontSize: 25.0, color: Colors.white),
+                  )
+                else if (languageDetected == "Automatic")
+                  const Text(
+                    "No Language Detected",
+                    style: TextStyle(fontSize: 25.0, color: Colors.white),
+                  )
+                else
+                  Row(children: [
+                    Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Padding(
+                              padding: EdgeInsets.only(top: 9),
+                              child: const Text("Detected Language",
+                                  style: TextStyle(
+                                    color: Color.fromARGB(255, 255, 223, 127),
+                                  ))),
+                          Padding(
+                              padding: EdgeInsets.only(top: 6),
+                              child: Text(
+                                languageDetected,
+                                style: const TextStyle(
+                                    fontFamily: "Arial",
+                                    decorationStyle: TextDecorationStyle.dashed,
+                                    fontSize: 25.0,
+                                    color: Colors.white),
+                              )),
+                        ]),
                     Padding(
-                        padding: EdgeInsets.only(left: 20, right: 40),
-                        child: FloatingActionButton(
-                          backgroundColor: Colors.black,
-                          child: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.blue,
-                            size: 40,
-                          ),
-                          onPressed: () {
-                            textList.clear();
-                            Navigator.of(context)
-                                .popUntil((route) => route.isFirst);
-                          },
+                        padding: EdgeInsets.only(top: 30),
+                        child: const Icon(
+                          Icons.arrow_right_alt_rounded,
+                          color: Colors.white,
+                          size: 50,
                         )),
-                    const Text(
-                      "English to Spanish",
-                      style: TextStyle(fontSize: 25.0, color: Colors.white),
-                    ),
-                    // DropDownMenu(),
-                  ]))
+                    Padding(
+                        padding: EdgeInsets.only(top: 30, left: 20),
+                        child: const Text(
+                          "English",
+                          style: TextStyle(fontSize: 25.0, color: Colors.white),
+                        ))
+                  ])
+                // DropDownMenu(),
+              ])
         ]));
   }
 }

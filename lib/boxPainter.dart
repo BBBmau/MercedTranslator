@@ -24,15 +24,14 @@ class TextDetectorPainter extends CustomPainter {
 
     for (TextBlock block in visionText.blocks) {
       for (TextLine line in block.lines) {
-        for (TextElement element in line.elements) {
-          Rect borderRect = element.rect.inflate(2);
-          canvas.drawRect(borderRect, borderPaint);
-          canvas.drawRect(element.rect, paint);
-        }
+        for (TextElement element in line.elements) {}
 
         //paint.color = Colors.blue;
         //canvas.drawRect(line.rect, paint);
       }
+      Rect borderRect = block.rect.inflate(2);
+      canvas.drawRect(borderRect, borderPaint);
+      canvas.drawRect(block.rect, paint);
       //paint.color = Colors.blue;
       //canvas.drawRect(block.rect, paint);
     }
