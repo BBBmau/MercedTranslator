@@ -84,7 +84,7 @@ class _ImageViewState extends State<ImageView> {
                   backgroundColor: Colors.grey,
                   child: const Icon(
                     Icons.close_outlined,
-                    color: Colors.amberAccent,
+                    color: Color.fromARGB(255, 255, 223, 127),
                     size: 40,
                   ),
                   onPressed: () {
@@ -100,7 +100,7 @@ class _ImageViewState extends State<ImageView> {
                   backgroundColor: Colors.blue,
                   child: const Icon(
                     Icons.check,
-                    color: Colors.amberAccent,
+                    color: Color.fromARGB(255, 255, 223, 127),
                     size: 40,
                   ),
                   onPressed: () {

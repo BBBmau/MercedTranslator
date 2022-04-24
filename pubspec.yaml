@@ -62,7 +62,7 @@ dev_dependencies:
 flutter_icons:
   android: "launcher_icon"
   ios: true
-  image_path: "lib/assets/155_elephant.png"
+  image_path: "lib/assets/eleIcon.png"
 
 # The following section is specific to Flutter.
 flutter:
