@@ -1,16 +1,9 @@
-# cse155
+# TemboTranslates
 
-A new Flutter project.
+A Text Translation App developed in our CSE155 class. We developed this fun app with the use of Flutter and Dart as well as Google's ML Kit and Translator API to provide a simple and effective UI for getting translated text on the go!
 
-## Getting Started
+![alt text](https://github.com/BBBmau/MercedTranslator/blob/main/lib/assets/eleIcon.png)
 
-This project is a starting point for a Flutter application.
+# Sample Image of our Translation Screen!
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![alt text](https://github.com/BBBmau/MercedTranslator/blob/main/translateScreen.jpg)
