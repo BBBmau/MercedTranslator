@@ -1,18 +1,9 @@
 import 'dart:io';
 import 'dart:developer';
-import 'dart:isolate';
-import 'package:cse155/translation_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:translator/translator.dart';
-import 'imageView.dart'
-    as IV; // Grabbing variables and methods from imageView.dart
-import 'package:permission_handler/permission_handler.dart';
-import 'package:camera/camera.dart';
-import 'package:direct_select/direct_select.dart';
 import 'textPainter.dart';
-import 'package:flutter/src/widgets/automatic_keep_alive.dart';
 
 class translationScreen extends StatefulWidget {
   const translationScreen(
@@ -120,7 +111,7 @@ class _TranslationScreenState extends State<translationScreen> {
                       ),
                       CircularProgressIndicator(
                           strokeWidth: 10.0,
-                          backgroundColor: Colors.blue,
+                          backgroundColor: Color.fromARGB(255, 100, 181, 246),
                           color: Color.fromARGB(255, 255, 223, 127)),
                       SizedBox(height: 200)
                     ]),
@@ -140,7 +131,7 @@ class _TranslationScreenState extends State<translationScreen> {
                       backgroundColor: Colors.black,
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Colors.blue,
+                        color: Color.fromARGB(255, 100, 181, 246),
                         size: 40,
                       ),
                       onPressed: () {
@@ -150,23 +141,27 @@ class _TranslationScreenState extends State<translationScreen> {
                       },
                     )),
                 if (languageDetected == "")
-                  const Text(
-                    "No Text Detected",
-                    style: TextStyle(fontSize: 25.0, color: Colors.white),
-                  )
+                  const Padding(
+                      padding: EdgeInsets.only(left: 20, top: 25, right: 17),
+                      child: Text(
+                        "No Text Detected",
+                        style: TextStyle(fontSize: 25.0, color: Colors.white),
+                      ))
                 else if (languageDetected == "Automatic")
-                  const Text(
-                    "No Language Detected",
-                    style: TextStyle(fontSize: 25.0, color: Colors.white),
-                  )
+                  const Padding(
+                      padding: EdgeInsets.only(left: 10, top: 25, right: 17),
+                      child: Text(
+                        "No Language Detected",
+                        style: TextStyle(fontSize: 25.0, color: Colors.white),
+                      ))
                 else
                   Row(children: [
                     Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Padding(
+                          const Padding(
                               padding: EdgeInsets.only(top: 9),
-                              child: const Text("Detected Language",
+                              child: Text("Detected Language",
                                   style: TextStyle(
                                     color: Color.fromARGB(255, 255, 223, 127),
                                   ))),
@@ -181,16 +176,16 @@ class _TranslationScreenState extends State<translationScreen> {
                                     color: Colors.white),
                               )),
                         ]),
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.only(top: 30),
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_right_alt_rounded,
                           color: Colors.white,
                           size: 50,
                         )),
-                    Padding(
+                    const Padding(
                         padding: EdgeInsets.only(top: 30, left: 20),
-                        child: const Text(
+                        child: Text(
                           "English",
                           style: TextStyle(fontSize: 25.0, color: Colors.white),
                         ))

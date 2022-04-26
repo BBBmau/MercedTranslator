@@ -97,7 +97,7 @@ class _ImageViewState extends State<ImageView> {
                       fontFamily: 'Arial', fontSize: 25.0, color: Colors.white),
                 ),
                 FloatingActionButton(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Color.fromARGB(255, 100, 181, 246),
                   child: const Icon(
                     Icons.check,
                     color: Color.fromARGB(255, 255, 223, 127),

@@ -274,7 +274,7 @@ class _CameraViewState extends State<CameraView> {
             ),
             const CircularProgressIndicator(
                 strokeWidth: 10.0,
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromARGB(255, 100, 181, 246),
                 color: Color.fromARGB(255, 255, 223, 127)),
             Container(height: 360)
           ]),

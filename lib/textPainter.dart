@@ -27,7 +27,7 @@ class filledBoxPainter extends CustomPainter with ChangeNotifier {
     final Paint paint = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 2.0
-      ..color = Colors.blue;
+      ..color = Color.fromARGB(255, 100, 181, 246);
 
     final Paint borderPaint = Paint()
       ..style = PaintingStyle.fill
