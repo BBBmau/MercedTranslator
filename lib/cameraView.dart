@@ -138,7 +138,7 @@ class _CameraViewState extends State<CameraView> {
                     );
                   },
                   child: Icon(
-                    Icons.flash_on_rounded,
+                    ourIcon,
                     color: _currentFlashMode == FlashMode.torch
                         ? Colors.amber
                         : Colors.white,
