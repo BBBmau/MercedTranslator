@@ -13,6 +13,7 @@ import 'dart:io' as IO;
 List<CameraDescription> cameras = [];
 late String imagePath;
 late bool isLoading;
+IconData ourIcon = Icons.flash_off_rounded;
 
 class CameraView extends StatefulWidget {
   const CameraView({Key? key}) : super(key: key);
@@ -126,8 +127,10 @@ class _CameraViewState extends State<CameraView> {
                     setState(() {
                       if (_currentFlashMode == FlashMode.off) {
                         _currentFlashMode = FlashMode.torch;
+                        ourIcon = Icons.flash_on_rounded;
                       } else {
                         _currentFlashMode = FlashMode.off;
+                        ourIcon = Icons.flash_off_rounded;
                       }
                     });
                     await controller.setFlashMode(
@@ -274,8 +277,8 @@ class _CameraViewState extends State<CameraView> {
             ),
             const CircularProgressIndicator(
                 strokeWidth: 10.0,
-                backgroundColor: Color.fromARGB(255, 100, 181, 246),
-                color: Color.fromARGB(255, 255, 223, 127)),
+                backgroundColor: Color.fromARGB(255, 12, 123, 220),
+                color: Color.fromARGB(255, 255, 194, 10)),
             Container(height: 360)
           ]),
           width: 395,

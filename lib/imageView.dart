@@ -84,7 +84,7 @@ class _ImageViewState extends State<ImageView> {
                   backgroundColor: Colors.grey,
                   child: const Icon(
                     Icons.close_outlined,
-                    color: Color.fromARGB(255, 255, 223, 127),
+                    color: Color.fromARGB(255, 0, 0, 0),
                     size: 40,
                   ),
                   onPressed: () {
@@ -97,10 +97,10 @@ class _ImageViewState extends State<ImageView> {
                       fontFamily: 'Arial', fontSize: 25.0, color: Colors.white),
                 ),
                 FloatingActionButton(
-                  backgroundColor: Color.fromARGB(255, 100, 181, 246),
+                  backgroundColor: Color.fromARGB(255, 12, 123, 220),
                   child: const Icon(
                     Icons.check,
-                    color: Color.fromARGB(255, 255, 223, 127),
+                    color: Color.fromARGB(255, 0, 0, 0),
                     size: 40,
                   ),
                   onPressed: () {

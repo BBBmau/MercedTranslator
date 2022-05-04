@@ -27,12 +27,12 @@ class filledBoxPainter extends CustomPainter with ChangeNotifier {
     final Paint paint = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 2.0
-      ..color = Color.fromARGB(255, 100, 181, 246);
+      ..color = Color.fromARGB(255, 12, 123, 220);
 
     final Paint borderPaint = Paint()
       ..style = PaintingStyle.fill
       ..strokeWidth = 4.0
-      ..color = Color.fromARGB(255, 255, 223, 127);
+      ..color = Color.fromARGB(255, 255, 194, 10);
 
     log("The textList length: ${textList.length}");
 

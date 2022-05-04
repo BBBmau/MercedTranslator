@@ -111,8 +111,8 @@ class _TranslationScreenState extends State<translationScreen> {
                       ),
                       CircularProgressIndicator(
                           strokeWidth: 10.0,
-                          backgroundColor: Color.fromARGB(255, 100, 181, 246),
-                          color: Color.fromARGB(255, 255, 223, 127)),
+                          backgroundColor: Color.fromARGB(255, 12, 123, 220),
+                          color: Color.fromARGB(255, 255, 194, 10)),
                       SizedBox(height: 200)
                     ]),
                     width: 395,
@@ -131,7 +131,7 @@ class _TranslationScreenState extends State<translationScreen> {
                       backgroundColor: Colors.black,
                       child: const Icon(
                         Icons.arrow_back,
-                        color: Color.fromARGB(255, 100, 181, 246),
+                        color: Color.fromARGB(255, 12, 123, 220),
                         size: 40,
                       ),
                       onPressed: () {
