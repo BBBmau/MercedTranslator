@@ -64,14 +64,6 @@ class _TranslationScreenState extends State<translationScreen> {
     return Container();
   }
 
-  // Widget paintedText() {
-  //   CustomPainter textPainter = translatedPainter(textList);
-  //   return RepaintBoundary(
-  //       child: CustomPaint(
-  //           child: _buildResults(widget.textRecognized),
-  //           foregroundPainter: textPainter));
-  // }
-
   final Future<Widget> _waiting = Future<Widget>.delayed(
     const Duration(seconds: 4),
     () => Container(),
@@ -345,23 +337,3 @@ class LanguageList {
     'zu': 'Zulu'
   };
 }
-
-// class Select extends StatefulWidget {
-//   const Select({Key? key}) : super(key: key);
-
-//   @override
-//   State<Select> createState() => _SelectState();
-// }
-
-// class _SelectState extends State<Selct> {
-
-
-
-//   Widget build(BuildContext context) {
-//     return DirectSelect(
-//       items: items, 
-//       onSelectedItemChanged: onSelectedItemChanged, 
-//       itemExtent: 35.0, 
-//       child: child)
-//   }
-// }
