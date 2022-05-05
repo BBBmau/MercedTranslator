@@ -1,8 +1,6 @@
 import 'package:cse155/cameraView.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-// import 'package:splashscreen/splashscreen.dart';
-// ignore: import_of_legacy_library_into_null_safe
 
 Future<void> main() async {
   try {
@@ -23,30 +21,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: CameraView()
-      //    SplashScreen(
-      //   seconds: 4,
-      //   navigateAfterSeconds: const CameraView(),
-      //   title: const Text(
-      //     'BLEACH',
-      //     style: TextStyle(
-      //         fontWeight: FontWeight.bold,
-      //         fontSize: 20.0,
-      //         color: Colors.amber),
-      //   ),
-      //   backgroundColor: Colors.black,
-      //   loaderColor: Colors.black,
-      // )
-      /*
-      return MaterialApp(
-        initialRoute: '/'
-        routes: {
-          '/': (context) => const CameraView(),
-          '/confirm': (context) => const ImageView(),
-          '/translation': (context) => const TranslationScreen(),
-          '/final': (context) => const FinalScreen(),
-        },
-      );
-      */
     );
   }
 }
