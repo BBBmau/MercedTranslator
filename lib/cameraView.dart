@@ -21,56 +21,11 @@ class CameraView extends StatefulWidget {
   State<CameraView> createState() => _CameraViewState();
 }
 
-/// added part
-
-// class FlashPage extends StatefulWidget {
-//   const FlashPage({Key? key}) : super(key: key);
-
-//   @override
-//   State<FlashPage> createState() => _FlashPageState();
-// }
-
-// class _FlashPageState extends State<FlashPage> {
-//   late CameraController _cameraController;
-// //   int flashStatus = 0;
-// //   List<Icon> flash = [
-// //     Icon(Icons.flash_on),
-// //     Icon(Icons.flash_off),
-// //     Icon(Icons.flash_auto)
-// //   ];
-
-// // // added this
-// //    List<FlashMode> flashMode = [
-// //     FlashMode.always,
-// //     FlashMode.off,
-// //     FlashMode.auto
-// //   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flash demo',
-//       home: Scaffold(
-//         body: Center(
-//           child: IconButton(
-//               icon: flash[flashStatus],
-//               onPressed: () {
-//                 setState(() {
-//                   flashStatus = (flashStatus + 1) % 3;
-//                   _cameraController.setFlashMode(flashMode[flashStatus]);
-//                 });
-//               }),
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 class _CameraViewState extends State<CameraView> {
   late CameraController controller;
   XFile? imageFile;
-  static bool flash = false; // I don't know if this is the right place
-  // int flashStatus = 0;
+  static bool flash = false;
   FlashMode? _currentFlashMode;
 
   getPermission() async {
@@ -107,19 +62,6 @@ class _CameraViewState extends State<CameraView> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            // const IconButton(
-
-            //   onPressed: null,
-
-            //   icon: Icon(
-
-            //     //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
-            //     Icons.flash_auto,
-            //     color: Colors.yellow,
-            //   ),
-            //   iconSize: 50,
-            // ),
-
             Padding(
               padding: const EdgeInsets.only(left: 85, top: 25),
               child: InkWell(
@@ -143,80 +85,22 @@ class _CameraViewState extends State<CameraView> {
                         ? Colors.amber
                         : Colors.white,
                     size: 35,
-
-                    // padding: EdgeInsets.only(top: 30),
                   )),
             ),
 
             IconButton(
-                // circle button
                 padding: new EdgeInsets.only(right: 75),
                 onPressed: takePicPressed,
                 icon: const Icon(
-                  // icon: const Icon(
                   Icons.lens_outlined,
                   color: Colors.white,
                 ),
                 iconSize: 90),
 
-            const SizedBox(width: 30, height: 20) // 50 and 25
+            const SizedBox(width: 30, height: 20)
           ],
         ));
   }
-
-  /* Widget controlRow() {
-    return Ink(
-        color: Colors.black,
-        child: Center(
-          //margin: const EdgeInsets.only(),
-          CameraController _cameraController;
-          heightFactor: 1,
-          child: Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: <Widget> [
-              IconButton( 
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.lens_outlined,
-                    color: Colors.pink,
-                  ),
-                  iconSize: 90),
-                  
-              IconButton(
-                padding: EdgeInsets.only(right: 30), // right 30
-                onPressed: null,
-                icon: Icon(
-                  
-                  flash ? Icons.flash_on : Icons.flash_off,
-                  
-                  color: Colors.white,
-                  
-                ),
-                iconSize: 50,
-                onPressed: () {
-                  _cameraController.setFlashMode(FlashMode.always);
-                  },
-                  style: ElevatedButton.styleFrom(primary: Colors.transparent),
-                  child: Text(
-                    "Flash On",
-                  style: TextStyle(
-                  color: Colors.white, backgroundColor: Colors.transparent),
-                    ),
-                  )  
-                  /* setState(() {
-                    flash = !flash;
-                    }); */ 
-
-                const SizedBox(width: 50, height: 25) // w - 50 h - 25
-
-              
-            ],
-            
-          ),
-          
-        ));
-      
-  } */
 
   void imageResize() {
     var originalImage =
@@ -289,78 +173,3 @@ class _CameraViewState extends State<CameraView> {
     ]));
   }
 }
-
-/* 
-            children: <Widget>[
-              int flashStatus = 0,
-              List<Icons> flash = [Icons.flash_on, Icons.flash_off, Icons.flash_auto];
-              const IconButton(
-                padding: EdgeInsets.only(right: 30), // right 30
-                icon: flash[flashStatus],
-                iconSize: 50,
-                onPressed: () {
-                    setState(() {
-                      flashStatus = (flashStatus + 1) % 3;
-                    });
-                  }),
-                ), */
-
-/* IconButton(
-                padding: EdgeInsets.only(right: 30), // right 30
-                onPressed: null,
-                icon: Icon(
-                  
-                  flash ? Icons.flash_on : Icons.flash_off,
-                  
-                  color: Colors.white,
-                  
-                ),
-                iconSize: 50,
-                onPressed: () {
-                  setState(() {
-                    flash = !flash;
-                    });
-                    flash 
-                      ? _cameraController.setFlashMode(FlashMode.torch) : _cameraController.set(FlashMode.off);
-                }),
-              ), */
-
-// }
-
-/* Widget controlRow() {
-    return Ink(
-        color: Colors.black,
-        child: Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            const IconButton(
-             
-              onPressed: null,
-              
-              icon: Icon(
-              
-                //Icons.margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
-                Icons.flash_auto,
-                color: Colors.yellow,
-              ),
-              iconSize: 50,
-            ),
-
-            IconButton( // circle button
-                // padding: new EdgeInsets.all(0.0),
-                onPressed: takePicPressed,
-                icon: const Icon( // icon: const Icon( 
-                  Icons.lens_outlined,
-                  color: Colors.red,
-
-                  
-                  
-                
-                ),
-                iconSize: 90),
-
-            const SizedBox(width: 50, height: 25) // 50 and 25
-          ],
-        ));
-  } */
